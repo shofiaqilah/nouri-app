@@ -18,6 +18,7 @@ class FoodLogAdapter extends TypeAdapter<FoodLog> {
     };
     return FoodLog(
       fdcId: fields[0] as int,
+      userEmail: fields[8] as String? ?? '',
       foodName: fields[1] as String,
       grams: fields[2] as double,
       calories: fields[3] as double,
@@ -31,9 +32,11 @@ class FoodLogAdapter extends TypeAdapter<FoodLog> {
   @override
   void write(BinaryWriter writer, FoodLog obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.fdcId)
+      ..writeByte(8)
+      ..write(obj.userEmail)
       ..writeByte(1)
       ..write(obj.foodName)
       ..writeByte(2)

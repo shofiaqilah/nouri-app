@@ -32,8 +32,6 @@ class FoodController extends GetxController {
     }
   }
 
-  /// Dipanggil saat user tap salah satu item di list
-  /// Fetch detail → tampil bottom sheet input gram
   Future<void> onFoodTapped(Food item) async {
     isLoading.value = true;
 
@@ -48,8 +46,6 @@ class FoodController extends GetxController {
   }
 
   void _showGramInput(FoodDetail detail) {
-    // Bottom sheet ini dipanggil dari controller supaya view tetap bersih.
-    // GramInputSheet adalah widget stateful yang menerima callback onConfirm.
     Get.bottomSheet(
       GramInputSheet(
         foodName: detail.description,

@@ -29,7 +29,6 @@ class HomePage extends StatelessWidget {
             await profileController.loadProfile();
           },
           child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +53,10 @@ class HomePage extends StatelessWidget {
                           ),
                           const Text(
                             'Pantau asupanmu hari ini',
-                            style: TextStyle(fontSize: 13, color: _textSecondary),
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: _textSecondary,
+                            ),
                           ),
                         ],
                       ),
@@ -131,17 +133,19 @@ class HomePage extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
 
-                        // Progress bar
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: LinearProgressIndicator(
-                            value: progress,
-                            backgroundColor: Colors.white24,
-                            valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
-                            minHeight: 8,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
+                        // // Progress bar
+                        // ClipRRect(
+                        //   borderRadius: BorderRadius.circular(8),
+                        //   child: LinearProgressIndicator(
+                        //     value: progress,
+                        //     backgroundColor: Colors.white24,
+                        //     valueColor: const AlwaysStoppedAnimation<Color>(
+                        //       Colors.white,
+                        //     ),
+                        //     minHeight: 8,
+                        //   ),
+                        // ),
+                        // const SizedBox(height: 12),
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -264,7 +268,10 @@ class HomePage extends StatelessWidget {
                           const SizedBox(height: 10),
                           const Text(
                             'Belum ada makanan hari ini',
-                            style: TextStyle(color: _textSecondary, fontSize: 14),
+                            style: TextStyle(
+                              color: _textSecondary,
+                              fontSize: 14,
+                            ),
                           ),
                           const SizedBox(height: 12),
                           GestureDetector(
@@ -275,7 +282,6 @@ class HomePage extends StatelessWidget {
                                 vertical: 10,
                               ),
                               decoration: BoxDecoration(
-                                color: _orange.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: const Text(
@@ -312,7 +318,10 @@ class HomePage extends StatelessWidget {
                   final logs = logController.todayLogs;
                   if (logs.isEmpty) return const SizedBox.shrink();
 
-                  final totalProtein = logs.fold(0.0, (sum, l) => sum + l.protein);
+                  final totalProtein = logs.fold(
+                    0.0,
+                    (sum, l) => sum + l.protein,
+                  );
                   final totalCarbs = logs.fold(0.0, (sum, l) => sum + l.carbs);
                   final totalFat = logs.fold(0.0, (sum, l) => sum + l.fat);
 
@@ -338,9 +347,17 @@ class HomePage extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            _buildMacroItem('Protein', totalProtein, const Color(0xFF42A5F5)),
+                            _buildMacroItem(
+                              'Protein',
+                              totalProtein,
+                              const Color(0xFF42A5F5),
+                            ),
                             _buildMacroItem('Karbohidrat', totalCarbs, _orange),
-                            _buildMacroItem('Lemak', totalFat, const Color(0xFFFFCA28)),
+                            _buildMacroItem(
+                              'Lemak',
+                              totalFat,
+                              const Color(0xFFFFCA28),
+                            ),
                           ],
                         ),
                       ),
@@ -380,11 +397,12 @@ class HomePage extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
+          height: 90,
           padding: const EdgeInsets.symmetric(vertical: 14),
           decoration: BoxDecoration(
             color: color.withOpacity(0.08),
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: color.withOpacity(0.15)),
+            border: Border.all(color: color.withOpacity(0.12), width: 1),
           ),
           child: Column(
             children: [
@@ -425,7 +443,11 @@ class HomePage extends StatelessWidget {
               color: _green.withOpacity(0.1),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Icon(Icons.restaurant_rounded, color: _green, size: 20),
+            child: const Icon(
+              Icons.restaurant_rounded,
+              color: _green,
+              size: 20,
+            ),
           ),
           const SizedBox(width: 12),
           Expanded(

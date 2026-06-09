@@ -9,6 +9,9 @@ class FoodLog extends HiveObject {
   @HiveField(0)
   int fdcId;
 
+  @HiveField(8)
+  String userEmail;
+
   @HiveField(1)
   String foodName;
 
@@ -32,6 +35,7 @@ class FoodLog extends HiveObject {
 
   FoodLog({
     required this.fdcId,
+    required this.userEmail,
     required this.foodName,
     required this.grams,
     required this.calories,

@@ -271,7 +271,6 @@ class FoodSearchPage extends StatelessWidget {
               width: 44,
               height: 44,
               decoration: BoxDecoration(
-                color: _green.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: const Icon(
@@ -300,7 +299,7 @@ class FoodSearchPage extends StatelessWidget {
                     children: [
                       Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
+                          horizontal: 6,
                           vertical: 2,
                         ),
                         decoration: BoxDecoration(

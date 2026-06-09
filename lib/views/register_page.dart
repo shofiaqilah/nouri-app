@@ -30,7 +30,6 @@ class RegisterPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Back button
                 GestureDetector(
                   onTap: () => Get.back(),
                   child: const Icon(
@@ -43,7 +42,7 @@ class RegisterPage extends StatelessWidget {
                 const SizedBox(height: 36),
 
                 const Text(
-                  'Create\naccount.',
+                  'Buat \nakun.',
                   style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.w800,
@@ -54,7 +53,7 @@ class RegisterPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Start your nutrition journey today.',
+                  'Mulai pantau konsumsi nutrisi harian Anda',
                   style: TextStyle(fontSize: 14, color: _textSecondary),
                 ),
 
@@ -165,7 +164,7 @@ class RegisterPage extends StatelessWidget {
                     onTap: () => Get.back(),
                     child: RichText(
                       text: const TextSpan(
-                        text: 'Already have an account? ',
+                        text: 'Sudah punya akun? ',
                         style: TextStyle(color: _textSecondary, fontSize: 14),
                         children: [
                           TextSpan(

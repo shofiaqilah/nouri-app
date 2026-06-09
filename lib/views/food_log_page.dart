@@ -4,8 +4,7 @@ import '../controllers/food_log_controller.dart';
 import '../models/food_log.dart';
 
 class FoodLogPage extends StatelessWidget {
-  /// Jika [readOnlyDate] di-set, halaman akan tampil dalam mode read-only
-  /// (untuk History Screen). Jika null, tampilkan log hari ini.
+
   final DateTime? readOnlyDate;
 
   const FoodLogPage({super.key, this.readOnlyDate});
@@ -22,14 +21,37 @@ class FoodLogPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final logController = Get.find<FoodLogController>();
 
-    final List<FoodLog> logs = isReadOnly
-        ? logController.getLogsForDate(readOnlyDate!)
-        : logController.todayLogs;
-
     final String title = isReadOnly
         ? _formatDate(readOnlyDate!)
         : 'Food Log Hari Ini';
 
+    if (isReadOnly) {
+      return FutureBuilder<List<FoodLog>>(
+        future: logController.getLogsForDate(readOnlyDate!),
+        builder: (context, snapshot) {
+          return _buildPage(
+            logController,
+            snapshot.data ?? const <FoodLog>[],
+            title,
+          );
+        },
+      );
+    }
+
+    return Obx(() {
+      return _buildPage(
+        logController,
+        logController.todayLogs.toList(),
+        title,
+      );
+    });
+  }
+
+  Widget _buildPage(
+    FoodLogController logController,
+    List<FoodLog> logs,
+    String title,
+  ) {
     final double totalCalories =
         logs.fold(0.0, (sum, log) => sum + log.calories);
 
@@ -66,11 +88,7 @@ class FoodLogPage extends StatelessWidget {
                             letterSpacing: -0.5,
                           ),
                         ),
-                        if (isReadOnly)
-                          const Text(
-                            'Mode baca — tidak dapat diedit',
-                            style: TextStyle(fontSize: 11, color: _textSecondary),
-                          ),
+
                       ],
                     ),
                   ),
@@ -136,9 +154,12 @@ class FoodLogPage extends StatelessWidget {
 
             // List
             Expanded(
-              child: isReadOnly
-                  ? _buildStaticList(logs)
-                  : _buildObxList(logController),
+              child: logs.isEmpty
+                  ? _buildEmptyState()
+                  : _buildList(
+                      logs,
+                      logController: isReadOnly ? null : logController,
+                    ),
             ),
           ],
         ),

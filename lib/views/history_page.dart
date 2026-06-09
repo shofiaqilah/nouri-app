@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/food_log_controller.dart';
+import '../models/food_log.dart';
 import 'food_log_page.dart';
 
 class HistoryPage extends StatelessWidget {
@@ -15,72 +16,89 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final logController = Get.find<FoodLogController>();
-    final dates = logController.logDates;
 
     return Scaffold(
       backgroundColor: _bg,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header
-            Padding(
-              padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () => Get.back(),
-                    child: const Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      size: 20,
-                      color: _textPrimary,
-                    ),
+      body: FutureBuilder<List<DateTime>>(
+        future: logController.getLogDates(),
+        builder: (context, snapshot) {
+          final dates = snapshot.data ?? [];
+
+          return SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () => Get.back(),
+                        child: const Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          size: 20,
+                          color: _textPrimary,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      const Text(
+                        'Riwayat',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
+                          color: _textPrimary,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 16),
-                  const Text(
-                    'Riwayat',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w800,
-                      color: _textPrimary,
-                      letterSpacing: -0.5,
-                    ),
+                ),
+
+                const SizedBox(height: 8),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Text(
+                    '${dates.length} hari dengan catatan',
+                    style: const TextStyle(fontSize: 13, color: _textSecondary),
                   ),
-                ],
-              ),
+                ),
+
+                const SizedBox(height: 20),
+
+                Expanded(
+                  child: dates.isEmpty
+                      ? _buildEmptyState()
+                      : ListView.separated(
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          itemCount: dates.length,
+                          separatorBuilder: (_, __) => const SizedBox(height: 8),
+                          itemBuilder: (context, index) {
+                            final date = dates[index];
+                            return FutureBuilder<List<FoodLog>>(
+                              future: logController.getLogsForDate(date),
+                              builder: (context, logsSnapshot) {
+                                final logs = logsSnapshot.data ?? [];
+                                final totalCal = logs.fold(
+                                  0.0,
+                                  (sum, l) => sum + l.calories,
+                                );
+
+                                return _buildDateCard(
+                                  date,
+                                  logs.length,
+                                  totalCal,
+                                );
+                              },
+                            );
+                          },
+                        ),
+                ),
+              ],
             ),
-
-            const SizedBox(height: 8),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Text(
-                '${dates.length} hari dengan catatan',
-                style: const TextStyle(fontSize: 13, color: _textSecondary),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            Expanded(
-              child: dates.isEmpty
-                  ? _buildEmptyState()
-                  : ListView.separated(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      itemCount: dates.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 8),
-                      itemBuilder: (context, index) {
-                        final date = dates[index];
-                        final logs = logController.getLogsForDate(date);
-                        final totalCal =
-                            logs.fold(0.0, (sum, l) => sum + l.calories);
-
-                        return _buildDateCard(date, logs.length, totalCal);
-                      },
-                    ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

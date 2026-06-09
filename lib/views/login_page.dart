@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Logo / branding
+                // Logo
                 Row(
                   children: [
                     Container(
@@ -61,7 +61,7 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 56),
 
                 const Text(
-                  'Welcome\nback.',
+                  'Selamat Datang \ndi Nouri!.',
                   style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.w800,
@@ -72,7 +72,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Track what you eat, fuel how you live.',
+                  'Aplikasi Pencatat Konsumsi Kalori Harian Anda',
                   style: TextStyle(fontSize: 14, color: _textSecondary),
                 ),
 
@@ -163,11 +163,11 @@ class LoginPage extends StatelessWidget {
                     onTap: () => Get.toNamed('/register'),
                     child: RichText(
                       text: const TextSpan(
-                        text: "Don't have an account? ",
+                        text: "Belum punya akun? ",
                         style: TextStyle(color: _textSecondary, fontSize: 14),
                         children: [
                           TextSpan(
-                            text: 'Sign up',
+                            text: 'Daftar di sini',
                             style: TextStyle(
                               color: _orange,
                               fontWeight: FontWeight.w600,

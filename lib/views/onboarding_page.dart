@@ -97,7 +97,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 const SizedBox(height: 40),
 
                 const Text(
-                  'Tell us about\nyourself.',
+                  'Beritahu kami \ntentang dirimu.',
                   style: TextStyle(
                     fontSize: 34,
                     fontWeight: FontWeight.w800,
@@ -108,7 +108,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Ini hanya dilakukan sekali untuk personalisasi aplikasi.',
+                  'Hanya dilakukan sekali untuk penggunaan aplikasi.',
                   style: TextStyle(fontSize: 14, color: _textSecondary),
                 ),
 

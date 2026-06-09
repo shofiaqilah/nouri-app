@@ -44,17 +44,19 @@ class HiveService {
   }
 
   /// Ambil semua log untuk tanggal tertentu
-  List<FoodLog> getLogsForDate(DateTime date) {
+  List<FoodLog> getLogsForDate(DateTime date, String userEmail) {
     return _foodLogs.values.where((log) {
-      return log.date.year == date.year &&
+      return log.userEmail == userEmail &&
+          log.date.year == date.year &&
           log.date.month == date.month &&
           log.date.day == date.day;
     }).toList();
   }
 
   /// Ambil semua tanggal yang punya log (untuk History Screen)
-  List<DateTime> getLogDates() {
+  List<DateTime> getLogDates(String userEmail) {
     final dates = _foodLogs.values
+        .where((log) => log.userEmail == userEmail)
         .map((log) {
           return DateTime(log.date.year, log.date.month, log.date.day);
         })
@@ -70,7 +72,8 @@ class HiveService {
   }
 
   /// Hitung total kalori untuk tanggal tertentu
-  double getTotalCaloriesForDate(DateTime date) {
-    return getLogsForDate(date).fold(0.0, (sum, log) => sum + log.calories);
+  double getTotalCaloriesForDate(DateTime date, String userEmail) {
+    return getLogsForDate(date, userEmail)
+        .fold(0.0, (sum, log) => sum + log.calories);
   }
 }

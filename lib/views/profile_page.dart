@@ -223,7 +223,6 @@ class ProfilePage extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                       decoration: BoxDecoration(
-                        color: _green.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Text(
