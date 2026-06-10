@@ -196,21 +196,21 @@ class HomePage extends StatelessWidget {
                     _buildActionCard(
                       icon: Icons.receipt_long_rounded,
                       label: 'Food\nLog',
-                      color: const Color(0xFF42A5F5),
+                      color: const Color.fromARGB(255, 66, 165, 245),
                       onTap: () => Get.toNamed('/today-log'),
                     ),
                     const SizedBox(width: 12),
                     _buildActionCard(
                       icon: Icons.history_rounded,
                       label: 'Riwayat',
-                      color: const Color(0xFF9C27B0),
+                      color: const Color.fromARGB(255, 156, 39, 176),
                       onTap: () => Get.toNamed('/history'),
                     ),
                     const SizedBox(width: 12),
                     _buildActionCard(
                       icon: Icons.person_rounded,
                       label: 'Profil',
-                      color: const Color(0xFF26A69A),
+                      color: const Color.fromARGB(255, 38, 166, 154),
                       onTap: () => Get.toNamed('/profile'),
                     ),
                   ],
@@ -402,6 +402,7 @@ class HomePage extends StatelessWidget {
           decoration: BoxDecoration(
             color: color.withOpacity(0.08),
             borderRadius: BorderRadius.circular(14),
+            border: Border.all(color:color),
           ),
           child: Column(
             children: [
