@@ -7,11 +7,11 @@ import '../models/food_log.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  static const _green = Color(0xFF4CAF50);
-  static const _orange = Color(0xFFFF7043);
-  static const _bg = Color(0xFFFAFAFA);
-  static const _textPrimary = Color(0xFF212121);
-  static const _textSecondary = Color(0xFF757575);
+  static const _green = Colors.green;
+  static const _orange = Colors.deepOrangeAccent;
+  static const _bg = Colors.white;
+  static const _textPrimary = Colors.black;
+  static const _textSecondary = Colors.grey;
   static const _cardBg = Colors.white;
 
   @override
@@ -48,7 +48,6 @@ class HomePage extends StatelessWidget {
                               fontSize: 22,
                               fontWeight: FontWeight.w800,
                               color: _textPrimary,
-                              letterSpacing: -0.5,
                             ),
                           ),
                           const Text(
@@ -133,26 +132,26 @@ class HomePage extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
 
-                        // // Progress bar
-                        // ClipRRect(
-                        //   borderRadius: BorderRadius.circular(8),
-                        //   child: LinearProgressIndicator(
-                        //     value: progress,
-                        //     backgroundColor: Colors.white24,
-                        //     valueColor: const AlwaysStoppedAnimation<Color>(
-                        //       Colors.white,
-                        //     ),
-                        //     minHeight: 8,
-                        //   ),
-                        // ),
-                        // const SizedBox(height: 12),
+                        // Progress bar
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: LinearProgressIndicator(
+                            value: progress,
+                            backgroundColor: Colors.white24,
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                              Colors.white,
+                            ),
+                            minHeight: 8,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             if (progress >= 1.0)
                               const Text(
-                                '🔥 Target terlampaui!',
+                                'Target kalori terlampaui!',
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: Colors.white,
@@ -237,7 +236,7 @@ class HomePage extends StatelessWidget {
                         'Lihat semua',
                         style: TextStyle(
                           fontSize: 13,
-                          color: _green,
+                          color: _textSecondary,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -248,7 +247,8 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 12),
 
                 Obx(() {
-                  final logs = logController.todayLogs;
+                  final logs = logController
+                      .todayLogs; // ambil data log makanan hari ini
                   if (logs.isEmpty) {
                     return Container(
                       width: double.infinity,
@@ -256,7 +256,7 @@ class HomePage extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: _cardBg,
                         borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: const Color(0xFFEEEEEE)),
+                        border: Border.all(color: Colors.grey.shade400),
                       ),
                       child: Column(
                         children: [
@@ -275,6 +275,7 @@ class HomePage extends StatelessWidget {
                           ),
                           const SizedBox(height: 12),
                           GestureDetector(
+                            // dia menuju ke search page
                             onTap: () => Get.toNamed('/search'),
                             child: Container(
                               padding: const EdgeInsets.symmetric(
@@ -299,7 +300,7 @@ class HomePage extends StatelessWidget {
                     );
                   }
 
-                  // Show last 3 entries
+                  // menampilkan 3 data makanan terakhir
                   final preview = logs.length > 3
                       ? logs.sublist(logs.length - 3).reversed.toList()
                       : logs.reversed.toList();
@@ -313,7 +314,7 @@ class HomePage extends StatelessWidget {
 
                 const SizedBox(height: 24),
 
-                // Macro summary
+                // menampilkan data makro
                 Obx(() {
                   final logs = logController.todayLogs;
                   if (logs.isEmpty) return const SizedBox.shrink();
@@ -342,7 +343,7 @@ class HomePage extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: _cardBg,
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: const Color(0xFFEEEEEE)),
+                          border: Border.all(color: Colors.grey.shade400),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -372,7 +373,6 @@ class HomePage extends StatelessWidget {
         ),
       ),
 
-      // FAB - tambah makanan
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Get.toNamed('/search'),
         backgroundColor: _orange,
@@ -402,7 +402,6 @@ class HomePage extends StatelessWidget {
           decoration: BoxDecoration(
             color: color.withOpacity(0.08),
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: color.withOpacity(0.12), width: 1),
           ),
           child: Column(
             children: [
@@ -432,7 +431,7 @@ class HomePage extends StatelessWidget {
       decoration: BoxDecoration(
         color: _cardBg,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFFEEEEEE)),
+        border: Border.all(color: Colors.grey.shade400),
       ),
       child: Row(
         children: [
@@ -440,12 +439,12 @@ class HomePage extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: _green.withOpacity(0.1),
+              color: _green,
               borderRadius: BorderRadius.circular(10),
             ),
             child: const Icon(
               Icons.restaurant_rounded,
-              color: _green,
+              color: Colors.white,
               size: 20,
             ),
           ),

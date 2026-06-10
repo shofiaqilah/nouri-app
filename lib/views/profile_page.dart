@@ -6,11 +6,11 @@ import '../controllers/auth_controller.dart';
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
-  static const _green = Color(0xFF4CAF50);
-  static const _orange = Color(0xFFFF7043);
-  static const _bg = Color(0xFFFAFAFA);
-  static const _textPrimary = Color(0xFF212121);
-  static const _textSecondary = Color(0xFF757575);
+  static const _green = Colors.green;
+  static const _orange = Colors.deepOrangeAccent;
+  static const _bg = Colors.white;
+  static const _textPrimary = Colors.black;
+  static const _textSecondary = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +131,9 @@ class ProfilePage extends StatelessWidget {
                             const Text(
                               'Body Mass Index',
                               style: TextStyle(
-                                  fontSize: 12, color: Colors.white70),
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
                             ),
                             const SizedBox(height: 4),
                             Text(
@@ -146,16 +148,14 @@ class ProfilePage extends StatelessWidget {
                             const SizedBox(height: 4),
                             Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 4),
-                              decoration: BoxDecoration(
-                                color: Colors.white24,
-                                borderRadius: BorderRadius.circular(8),
+                                horizontal: 10,
+                                vertical: 4,
                               ),
                               child: Text(
                                 bmiCat,
                                 style: const TextStyle(
                                   fontSize: 12,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight(500),
                                   color: Colors.white,
                                 ),
                               ),
@@ -206,7 +206,15 @@ class ProfilePage extends StatelessWidget {
                 const SizedBox(height: 24),
 
                 // Info section
-                _buildSectionLabel('Informasi'),
+                Text(
+                  'Informasi',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: _textPrimary,
+                    letterSpacing: 0.5,
+                  ),
+                ),
                 const SizedBox(height: 12),
                 _buildInfoTile(
                   icon: Icons.person_outline_rounded,
@@ -219,9 +227,15 @@ class ProfilePage extends StatelessWidget {
                   label: 'Target Kalori Harian',
                   value: '${user.dailyCalorieTarget.toStringAsFixed(0)} kcal',
                   trailing: GestureDetector(
-                    onTap: () => _showEditCalorieDialog(profileController, user.dailyCalorieTarget),
+                    onTap: () => _showEditCalorieDialog(
+                      profileController,
+                      user.dailyCalorieTarget,
+                    ),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 6,
+                      ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -254,11 +268,9 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.red,
-                      side: const BorderSide(color: Colors.red, width: 1.5),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.red,
+                      side: BorderSide(color: Colors.red),
                     ),
                   ),
                 ),
@@ -268,18 +280,6 @@ class ProfilePage extends StatelessWidget {
             );
           }),
         ),
-      ),
-    );
-  }
-
-  Widget _buildSectionLabel(String label) {
-    return Text(
-      label,
-      style: const TextStyle(
-        fontSize: 13,
-        fontWeight: FontWeight.w600,
-        color: _textSecondary,
-        letterSpacing: 0.5,
       ),
     );
   }
@@ -297,7 +297,7 @@ class ProfilePage extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: const Color(0xFFEEEEEE)),
+          border: Border.all(color: Colors.grey.shade400),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -317,10 +317,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   TextSpan(
                     text: ' $unit',
-                    style: const TextStyle(
-                      fontSize: 11,
-                      color: _textSecondary,
-                    ),
+                    style: const TextStyle(fontSize: 11, color: _textSecondary),
                   ),
                 ],
               ),
@@ -347,7 +344,7 @@ class ProfilePage extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFFEEEEEE)),
+        border: Border.all(color: Colors.grey.shade400),
       ),
       child: Row(
         children: [
@@ -380,7 +377,9 @@ class ProfilePage extends StatelessWidget {
   }
 
   void _showEditCalorieDialog(ProfileController controller, double current) {
-    final textController = TextEditingController(text: current.toStringAsFixed(0));
+    final textController = TextEditingController(
+      text: current.toStringAsFixed(0),
+    );
 
     Get.dialog(
       AlertDialog(
@@ -411,17 +410,12 @@ class ProfilePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
             ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: _green, width: 1.5),
-            ),
           ),
         ),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: const Text('Batal',
-                style: TextStyle(color: _textSecondary)),
+            child: const Text('Batal', style: TextStyle(color: _textSecondary)),
           ),
           TextButton(
             onPressed: () {
@@ -435,10 +429,7 @@ class ProfilePage extends StatelessWidget {
             },
             child: const Text(
               'Simpan',
-              style: TextStyle(
-                color: _green,
-                fontWeight: FontWeight.w700,
-              ),
+              style: TextStyle(color: _green, fontWeight: FontWeight.w700),
             ),
           ),
         ],
@@ -465,8 +456,7 @@ class ProfilePage extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: const Text('Batal',
-                style: TextStyle(color: _textSecondary)),
+            child: const Text('Batal', style: TextStyle(color: _textSecondary)),
           ),
           TextButton(
             onPressed: () {
@@ -475,8 +465,7 @@ class ProfilePage extends StatelessWidget {
             },
             child: const Text(
               'Logout',
-              style: TextStyle(
-                  color: Colors.red, fontWeight: FontWeight.w700),
+              style: TextStyle(color: Colors.red, fontWeight: FontWeight.w700),
             ),
           ),
         ],

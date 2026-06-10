@@ -9,11 +9,11 @@ class LoginPage extends StatelessWidget {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  static const _green = Color(0xFF4CAF50);
-  static const _orange = Color(0xFFFF7043);
-  static const _bg = Color(0xFFFAFAFA);
-  static const _textPrimary = Color(0xFF212121);
-  static const _textSecondary = Color(0xFF757575);
+  static const _green = Colors.green;
+  static const _orange = Colors.deepOrangeAccent;
+  static const _bg = Colors.white;
+  static const _textPrimary = Colors.black;
+  static const _textSecondary = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 56),
 
                 const Text(
-                  'Selamat Datang \ndi Nouri!.',
+                  'Selamat Datang \ndi Nouri!',
                   style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.w800,

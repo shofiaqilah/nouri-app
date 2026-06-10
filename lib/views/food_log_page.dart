@@ -106,7 +106,6 @@ class FoodLogPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: _green.withOpacity(0.08),
                   borderRadius: BorderRadius.circular(14),
-                  border: Border.all(color: _green.withOpacity(0.2)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -116,7 +115,7 @@ class FoodLogPage extends StatelessWidget {
                       children: [
                         const Text(
                           'Total Kalori',
-                          style: TextStyle(fontSize: 12, color: _textSecondary),
+                          style: TextStyle(fontSize: 12, color: _textPrimary, fontWeight: FontWeight(500)),
                         ),
                         Text(
                           '${totalCalories.toStringAsFixed(0)} kcal',
@@ -132,15 +131,15 @@ class FoodLogPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         const Text(
-                          'Total Entri',
-                          style: TextStyle(fontSize: 12, color: _textSecondary),
+                          'Total Makanan',
+                          style: TextStyle(fontSize: 12, color: _textPrimary, fontWeight: FontWeight(500)),
                         ),
                         Text(
-                          '${logs.length} makanan',
+                          '${logs.length}',
                           style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w800,
-                            color: _textPrimary,
+                            color: _green,
                           ),
                         ),
                       ],
@@ -211,7 +210,7 @@ class FoodLogPage extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFFEEEEEE)),
+        border: Border.all(color: Colors.grey.shade400),
       ),
       child: Row(
         children: [
@@ -219,10 +218,10 @@ class FoodLogPage extends StatelessWidget {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              color: _green.withOpacity(0.1),
+              color: _green,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Icon(Icons.restaurant_rounded, color: _green, size: 22),
+            child: const Icon(Icons.restaurant_rounded, color: Colors.white, size: 22),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -286,12 +285,11 @@ class FoodLogPage extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: Colors.red.withOpacity(0.08),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: const Icon(
-                  Icons.delete_outline_rounded,
-                  size: 18,
+                  Icons.delete,
+                  size: 20,
                   color: Colors.red,
                 ),
               ),

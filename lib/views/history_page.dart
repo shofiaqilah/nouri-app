@@ -7,11 +7,11 @@ import 'food_log_page.dart';
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
 
-  static const _green = Color(0xFF4CAF50);
-  static const _bg = Color(0xFFFAFAFA);
-  static const _textPrimary = Color(0xFF212121);
-  static const _textSecondary = Color(0xFF757575);
-  static const _orange = Color(0xFFFF7043);
+  static const _green = Colors.green;
+  static const _orange = Colors.deepOrangeAccent;
+  static const _bg = Colors.white;
+  static const _textPrimary = Colors.black;
+  static const _textSecondary = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +127,7 @@ class HistoryPage extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: isToday ? _green.withOpacity(0.3) : const Color(0xFFEEEEEE),
+            color: isToday ? _green.withOpacity(0.3) : Colors.grey.shade300,
           ),
         ),
         child: Row(

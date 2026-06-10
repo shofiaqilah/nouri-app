@@ -8,11 +8,11 @@ class FoodSearchPage extends StatelessWidget {
 
   final _searchController = TextEditingController();
 
-  static const _green = Color(0xFF4CAF50);
-  static const _orange = Color(0xFFFF7043);
-  static const _bg = Color(0xFFFAFAFA);
-  static const _textPrimary = Color(0xFF212121);
-  static const _textSecondary = Color(0xFF757575);
+  static const _green = Colors.green;
+  static const _orange = Colors.deepOrangeAccent;
+  static const _bg = Colors.white;
+  static const _textPrimary = Colors.black;
+  static const _textSecondary = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +61,7 @@ class FoodSearchPage extends StatelessWidget {
                   Expanded(
                     child: TextField(
                       controller: _searchController,
+                      cursorColor: _textPrimary,
                       style: const TextStyle(fontSize: 15, color: _textPrimary),
                       textInputAction: TextInputAction.search,
                       onSubmitted: (val) => controller.search(val),
@@ -86,17 +87,10 @@ class FoodSearchPage extends StatelessWidget {
                             color: Color(0xFFE0E0E0),
                           ),
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          borderSide: const BorderSide(
-                            color: Color(0xFFE0E0E0),
-                          ),
-                        ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(14),
                           borderSide: const BorderSide(
-                            color: _green,
-                            width: 1.5,
+                            color: Color(0xFFE0E0E0),
                           ),
                         ),
                       ),
