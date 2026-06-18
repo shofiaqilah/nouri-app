@@ -8,7 +8,6 @@ class HomeBinding extends Bindings {
   void dependencies() {
     Get.put<FoodLogController>(FoodLogController());
     Get.lazyPut<ProfileController>(() => ProfileController());
-    // AuthController sudah di-put oleh AuthBinding, pastikan tersedia
     if (!Get.isRegistered<AuthController>()) {
       Get.lazyPut<AuthController>(() => AuthController());
     }

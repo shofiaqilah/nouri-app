@@ -29,13 +29,13 @@ void main() async {
   final session = SessionService();
   final isLoggedIn = await session.isLoggedIn();
 
-  // Kalau sudah login, cek apakah onboarding sudah selesai
+  // klo udah login, cek onboarding udah selesai blm
   String initialRoute = '/login';
   if (isLoggedIn) {
     final email = await session.getUserEmail();
     if (email != null) {
       final user = HiveService().getUser(email);
-      // Onboarding dianggap selesai jika name tidak kosong
+      // Onboarding dianggap selesai klo name g kosong
       if (user != null && user.name.isNotEmpty) {
         initialRoute = '/home';
       } else {

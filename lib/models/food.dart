@@ -17,7 +17,6 @@ class Food {
 
     final nutrients = json['foodNutrients'] as List<dynamic>?;
     if (nutrients != null) {
-      // USDA nutrient number untuk Energy (kalori) adalah "208"
       final energyEntry = nutrients.firstWhere(
         (n) =>
             n['nutrientNumber'] == '208' ||

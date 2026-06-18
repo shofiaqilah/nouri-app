@@ -22,7 +22,6 @@ class ProfileController extends GetxController {
     }
   }
 
-  /// Dipanggil dari Onboarding Page setelah user isi data diri
   Future<void> saveOnboarding({
     required String name,
     required int age,
@@ -46,7 +45,6 @@ class ProfileController extends GetxController {
     Get.offAllNamed('/home');
   }
 
-  /// Update target kalori dari Profile Page
   Future<void> updateCalorieTarget(double target) async {
     if (user.value == null) return;
 

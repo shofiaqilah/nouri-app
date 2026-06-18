@@ -75,7 +75,6 @@ class FoodLogController extends GetxController {
     await loadToday();
   }
 
-  /// Ambil logs untuk tanggal tertentu (History Screen)
   Future<List<FoodLog>> getLogsForDate(DateTime date) async {
     final email = await _session.getUserEmail();
     if (email == null) return [];

@@ -43,7 +43,7 @@ class HiveService {
     await _foodLogs.add(log);
   }
 
-  /// Ambil semua log untuk tanggal tertentu
+  // Ambil semua log untuk tanggal tertentu
   List<FoodLog> getLogsForDate(DateTime date, String userEmail) {
     return _foodLogs.values.where((log) {
       return log.userEmail == userEmail &&
@@ -53,7 +53,7 @@ class HiveService {
     }).toList();
   }
 
-  /// Ambil semua tanggal yang punya log (untuk History Screen)
+  // Ambil semua tanggal yang punya log (untuk History Screen)
   List<DateTime> getLogDates(String userEmail) {
     final dates = _foodLogs.values
         .where((log) => log.userEmail == userEmail)
@@ -66,12 +66,12 @@ class HiveService {
     return dates;
   }
 
-  /// Hapus satu entri log
+  // Hapus satu entri log
   Future<void> deleteFoodLog(FoodLog log) async {
     await log.delete();
   }
 
-  /// Hitung total kalori untuk tanggal tertentu
+  // Hitung total kalori untuk tanggal tertentu
   double getTotalCaloriesForDate(DateTime date, String userEmail) {
     return getLogsForDate(date, userEmail)
         .fold(0.0, (sum, log) => sum + log.calories);

@@ -52,7 +52,6 @@ class _GramInputSheetState extends State<GramInputSheet> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Handle bar
               Center(
                 child: Container(
                   width: 40,
@@ -65,7 +64,6 @@ class _GramInputSheetState extends State<GramInputSheet> {
               ),
               const SizedBox(height: 20),
 
-              // Food name
               Text(
                 widget.foodName,
                 style: const TextStyle(
@@ -84,7 +82,6 @@ class _GramInputSheetState extends State<GramInputSheet> {
 
               const SizedBox(height: 20),
 
-              // Label
               const Text(
                 'Jumlah yang dimakan',
                 style: TextStyle(
@@ -96,7 +93,6 @@ class _GramInputSheetState extends State<GramInputSheet> {
               ),
               const SizedBox(height: 8),
 
-              // Gram input
               TextFormField(
                 controller: _controller,
                 autofocus: true,
@@ -157,7 +153,6 @@ class _GramInputSheetState extends State<GramInputSheet> {
 
               const SizedBox(height: 12),
 
-              // Calorie preview
               AnimatedOpacity(
                 opacity: _controller.text.isNotEmpty ? 1 : 0,
                 duration: const Duration(milliseconds: 200),
@@ -195,7 +190,6 @@ class _GramInputSheetState extends State<GramInputSheet> {
 
               const SizedBox(height: 24),
 
-              // Confirm button
               SizedBox(
                 width: double.infinity,
                 height: 52,

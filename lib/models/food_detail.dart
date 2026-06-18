@@ -42,7 +42,7 @@ class FoodDetail {
     );
   }
 
-  /// Hitung nilai nutrisi aktual berdasarkan input gram user
+  // Hitung nilai nutrisi aktual berdasarkan input gram user
   double calories(double grams) => (caloriesPer100g / 100) * grams;
   double protein(double grams) => (proteinPer100g / 100) * grams;
   double carbs(double grams) => (carbsPer100g / 100) * grams;

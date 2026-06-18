@@ -98,7 +98,6 @@ class FoodLogPage extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Summary strip
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Container(
